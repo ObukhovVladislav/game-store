@@ -19,7 +19,7 @@ def genre(request):
     categories = GameCategory.objects.all()
     context = {
         'categories': categories,
-        'page_title': 'каталог'
+        'page_title': 'Жанры'
     }
     return render(request, 'mainapp/genre.html', context)
 
@@ -28,7 +28,7 @@ def genre_section(request, category_pk):
     items = Game.objects.filter(category_id=category_pk)
     context = {
         'items': items,
-        'page_title': 'страница игр'
+        'page_title': 'Страница жанра'
     }
     return render(request, 'mainapp/genre_section.html', context)
 
@@ -37,7 +37,7 @@ def game_page(request, game_pk):
     game = Game.objects.get(pk=game_pk)
     context = {
         'game': game,
-        'page_title': 'страница игры'
+        'page_title': 'Страница игры'
     }
     return render(request, 'mainapp/game_page.html', context)
 
@@ -57,21 +57,6 @@ def add_genre(request):
     return render(request, 'mainapp/add_genre.html', context)
 
 
-def add_game(request):
-    if request.method == 'POST':
-        form = GameForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('mainapp:genre'))
-    else:
-        form = GameForm()
-    context = {
-        'title': 'Добавить игру',
-        'form': form,
-    }
-    return render(request, 'mainapp/add_game.html', context)
-
-
 def edit_genre(request, pk):
     category = GameCategory.objects.get(id=pk)
     if request.method == 'POST':
@@ -88,6 +73,27 @@ def edit_genre(request, pk):
     return render(request, 'mainapp/add_genre.html', context)
 
 
+def delete_genre(request, pk):
+    remove_genre = GameCategory.objects.get(id=pk)
+    remove_genre.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def add_game(request):
+    if request.method == 'POST':
+        form = GameForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('mainapp:genre'))
+    else:
+        form = GameForm()
+    context = {
+        'title': 'Добавить игру',
+        'form': form,
+    }
+    return render(request, 'mainapp/add_game.html', context)
+
+
 def edit_game(request, pk):
     game = Game.objects.get(id=pk)
     if request.method == 'POST':
@@ -102,3 +108,9 @@ def edit_game(request, pk):
         'form': form,
     }
     return render(request, 'mainapp/add_game.html', context)
+
+
+def delete_game(request, pk):
+    remove_game = Game.objects.get(id=pk)
+    remove_game.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

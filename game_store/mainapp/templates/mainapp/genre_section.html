@@ -1,17 +1,16 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
-<h1>Гонки</h1>
-<a href="{% url 'mainapp:add_game' %}">Добавить игру</a>
+<h1>Игры:</h1>
+<a class="btn btn-success" href="{% url 'mainapp:add_game' %}">Добавить игру</a>
 <div class="section-menu">
     <ul>
         {% for item in items %}
         <li>
             <h4><a href="{% url 'mainapp:game_page' item.pk %}">
                 {{ item }}
-                <a href="{% url 'mainapp:edit_game' item.pk %}" class="btn btn-info">
-                    Редактировать</a>
             </a>
-                </a></h4>
+                <a href="{% url 'mainapp:edit_game' item.pk %}" class="btn btn-info">
+                    Редактировать</a></h4>
         </li>
         {% endfor %}
     </ul>

@@ -8,12 +8,15 @@
     <ul>
         {% for item in categories %}
         <li>
-            <a href="{% url 'mainapp:genre_section' item.pk %}">
+            <h4><a href="{% url 'mainapp:genre_section' item.pk %}">
                 {{ item }}
             </a>
             <a href="{% url 'mainapp:edit_genre' item.pk %}" class="btn btn-info">
                 Редактировать</a>
             </a>
+            <a href="{% url 'mainapp:delete_genre' item.pk %}" class="btn btn-danger">
+                Удалить</a>
+            </a></h4>
         </li>
         {% endfor %}
     </ul>
