@@ -1,0 +1,14 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<h1>Игра: {{ game.name }}</h1>
+<p class="game-name">
+    Название: {{ game.name }}
+<p class="game_desc">
+    Описание: {{ game.desc }}
+</p>
+<a href="{% url 'basket:add' game.id %}"
+   class="btn btn-dark">
+    купить
+</a>
+
+{% endblock %}

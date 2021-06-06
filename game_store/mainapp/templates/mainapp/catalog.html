@@ -1,0 +1,18 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<h1>Каталог</h1>
+<a href="{% url 'mainapp:create_category' %}">Добавить категорию</a>
+<div class="catalog-menu">
+    <ul>
+        {% for item in categories %}
+        <li>
+            <h3><a href="{% url 'mainapp:catalog_section' item.pk %}">
+                {{ item }}
+                <a href="#" class="btn btn-danger">Удалить</a>
+            </a></h3>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
