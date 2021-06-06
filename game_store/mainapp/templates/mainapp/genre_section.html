@@ -8,7 +8,10 @@
         <li>
             <h4><a href="{% url 'mainapp:game_page' item.pk %}">
                 {{ item }}
-            </a></h4>
+                <a href="{% url 'mainapp:edit_game' item.pk %}" class="btn btn-info">
+                    Редактировать</a>
+            </a>
+                </a></h4>
         </li>
         {% endfor %}
     </ul>
