@@ -6,6 +6,9 @@
 <p class="game_desc">
     Описание: {{ game.desc }}
 </p>
+<p class="game_price">
+    Цена: {{ game.price }}
+</p>
 <a href="{% url 'basket:add' game.id %}"
    class="btn btn-dark">
     купить

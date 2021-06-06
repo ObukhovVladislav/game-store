@@ -16,9 +16,17 @@ class GameForm(forms.ModelForm):
     class Meta:
         model = Game
         fields = (
+            'category',
             'name',
             'desc',
             'price',
-            'category',
+        )
 
+
+class DeleteGenre(forms.ModelForm):
+    class Meta:
+        model = GameCategory
+        fields = (
+            'name',
+            'desc',
         )

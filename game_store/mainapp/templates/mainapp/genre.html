@@ -1,15 +1,16 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
 <h1>Жанры</h1>
-<a href="{% url 'mainapp:add_category' %}">Добавить жанр</a>
+<a href="{% url 'mainapp:add_genre' %}">Добавить жанр</a>
 
 <div class="genre-menu">
     <ul>
         {% for item in categories %}
         <li>
-            <h3><a href="{% url 'mainapp:genre_section' item.pk %}">
+            <a href="{% url 'mainapp:genre_section' item.pk %}">
                 {{ item }}
-            </a></h3>
+<!--                <a href="{% url 'mainapp:delete_genre' %}">Удалить</a>-->
+            </a>
         </li>
         {% endfor %}
     </ul>

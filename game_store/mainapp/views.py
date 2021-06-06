@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 
-from mainapp.forms import CategoryForm, GameForm
+from mainapp.forms import CategoryForm, GameForm, DeleteGenre
 from mainapp.models import GameCategory, Game
 
 
@@ -42,7 +42,7 @@ def game_page(request, game_pk):
     return render(request, 'mainapp/game_page.html', context)
 
 
-def add_category(request):
+def add_genre(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
@@ -54,7 +54,7 @@ def add_category(request):
         'title': 'Добавить категорию',
         'form': form,
     }
-    return render(request, 'mainapp/add_category.html', context)
+    return render(request, 'mainapp/add_genre.html', context)
 
 
 def add_game(request):
@@ -62,7 +62,7 @@ def add_game(request):
         form = GameForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('mainapp:genre_section'))
+            return HttpResponseRedirect(reverse('mainapp:genre'))
     else:
         form = GameForm()
     context = {
@@ -70,3 +70,16 @@ def add_game(request):
         'form': form,
     }
     return render(request, 'mainapp/add_game.html', context)
+
+
+# def delete_genre(request, genre_id):
+#     genre_delete = get_object_or_404(CategoryForm, id=genre_id)
+#     if request.method == 'POST':
+#         form = DeleteGenre(request.POST, instance=genre_delete)
+#         if form.is_valid():
+#             genre_delete.delete()
+#             return HttpResponseRedirect(reverse('mainapp:genre'))
+#     else:
+#         form = DeleteGenre(instance=genre_delete)
+#     template_vars = {'form': form}
+#     return render(request, 'mainapp/delete_genre.html', template_vars)
