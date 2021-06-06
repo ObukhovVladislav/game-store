@@ -10,7 +10,11 @@
                 {{ item }}
             </a>
                 <a href="{% url 'mainapp:edit_game' item.pk %}" class="btn btn-info">
-                    Редактировать</a></h4>
+                    Редактировать
+                </a>
+                <a href="{% url 'mainapp:delete_game' item.pk %}" class="btn btn-danger">
+                    Удалить
+                </a></h4>
         </li>
         {% endfor %}
     </ul>
