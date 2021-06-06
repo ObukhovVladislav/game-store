@@ -1,0 +1,18 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<h1>Жанры</h1>
+<a href="{% url 'mainapp:add_category' %}">Добавить жанр</a>
+
+<div class="genre-menu">
+    <ul>
+        {% for item in categories %}
+        <li>
+            <h3><a href="{% url 'mainapp:genre_section' item.pk %}">
+                {{ item }}
+            </a></h3>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

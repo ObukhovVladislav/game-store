@@ -22,7 +22,7 @@ def add(request, game_id):
         game=game
     )
     return HttpResponseRedirect(
-        reverse('mainapp:catalog_section',
+        reverse('mainapp:genre_section',
                 kwargs={'category_pk': game.category_id})
     )
 

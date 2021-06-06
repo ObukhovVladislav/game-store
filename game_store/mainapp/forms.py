@@ -1,6 +1,6 @@
 from django import forms
 
-from mainapp.models import GameCategory
+from mainapp.models import GameCategory, Game
 
 
 class CategoryForm(forms.ModelForm):
@@ -8,11 +8,17 @@ class CategoryForm(forms.ModelForm):
         model = GameCategory
         fields = (
             'name',
+            'desc',
         )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for name, item in self.fields.items():
-            item.widget.attrs['class'] = 'form-control mt-1'
-            item.widget.attrs['style'] = 'resize: none'
-            item.help_text = ''
+
+class GameForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = (
+            'name',
+            'desc',
+            'price',
+            'category',
+
+        )
