@@ -1,0 +1,3 @@
+Admin data:
+vlad
+password
