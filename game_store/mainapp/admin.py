@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from mainapp.models import GameCategory, Game
+
+admin.site.register(GameCategory)
+admin.site.register(Game)
